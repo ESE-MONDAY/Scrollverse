@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const Navbar = () => {
   return (
-    <nav className='flex justify-between items-center w-full p-4'>
+    <nav className='flex justify-between items-center w-full '>
         <div className='flex gap-4 sm:gap-16'>
             <Link href="/" className='text-base'> ScrollVerse <sub>made with 💖</sub></Link>
             <div className='flex gap-4'>
