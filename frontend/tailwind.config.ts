@@ -11,6 +11,12 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        scroll:{
+          background: "#fff8f3",
+          foreground: "#ffdeb5",
+          black : "#101010",
+          orange:"#ff684b"
+        }
       },
     },
   },
