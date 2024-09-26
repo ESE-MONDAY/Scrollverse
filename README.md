@@ -1,5 +1,4 @@
-Here’s the complete README in markdown format:
-markdown
+
 # Scrollverse
 
 Scrollverse is a public good project that allows users to list their projects, gather community feedback, and raise funds through donations. It empowers creators to showcase their ideas while enabling the community to support and engage with innovative initiatives.
