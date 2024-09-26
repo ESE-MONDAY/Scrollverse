@@ -106,6 +106,4 @@ Thank you to all contributors and the open-source community for their support.
 
 ## Contact
 
-For any inquiries, please reach out at [your-email@example.com].
-```
-
+For any inquiries, please reach out at [mondayese8@gmail.com](mailto:mondayese8@gmail.com).
