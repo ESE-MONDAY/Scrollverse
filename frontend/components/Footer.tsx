@@ -4,7 +4,7 @@ import { FaTwitter, FaDiscord, FaGithub } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <div className='bg-black flex justify-between p-4'>
+    <div className='bg-black flex justify-between p-4 sm:p-16'>
        
         <Link href="/" className='text-base text-white'> ScrollVerse</Link>
         <div className='flex flex-col gap-3'>
