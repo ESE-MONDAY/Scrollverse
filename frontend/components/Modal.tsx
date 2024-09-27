@@ -3,19 +3,21 @@ import useOnClickOutside from "@/hooks/useClickOutside";
 import clsx from "clsx";
 
 interface ModalPropsInterface {
-	onClick?: any;
-	children: React.ReactNode;
+	onClick?: () => void; // Updated from 'any' to a specific function type
+    children: React.ReactNode;
 	open: boolean;
 	header?: string;
 	className?: string
 }
 
-const Modal: FunctionComponent<ModalPropsInterface> = ({ children, onClick, open, header, className }) => {
+const Modal: FunctionComponent<ModalPropsInterface> = ({ children, onClick, open, className }) => {
 	const modalRef = useRef<HTMLDivElement>(null);
 
 	useOnClickOutside(modalRef, () => {
-		onClick();
-	});
+        if (onClick) {
+            onClick();
+        }
+    });
 
 	return (
 		<>
