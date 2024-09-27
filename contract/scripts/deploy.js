@@ -1,21 +1,26 @@
-// scripts/deploy.js
-const { ethers } = require("hardhat");
+
+
+
+
+
+const hre = require("hardhat");
 
 async function main() {
-    // Get the ContractFactory and Signers here.
-    const ProjectVoting = await ethers.getContractFactory("ProjectVoting");
-    const projectVoting = await ProjectVoting.deploy();
+  console.log("Deploying contracts...");
 
-    // Wait for the contract to be deployed.
-    await projectVoting.deployed();
+  // Deploy Project
+  const ProjectVoting  = await ethers.getContractFactory("ProjectVoting");
+  const projectVoting = await ProjectVoting.deploy();
 
-    console.log("ProjectVoting contract deployed to:", projectVoting.address);
+  console.log("Project deployed to:", await projectVoting.getAddress());
+  console.log(`Block explorer URL: https://sepolia.scrollscan.com/address/${ await projectVoting.getAddress()}`);    
+ 
+
 }
 
-// Run the main function and catch any errors
 main()
-    .then(() => process.exit(0))
-    .catch((error) => {
-        console.error(error);
-        process.exit(1);
-    });
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
