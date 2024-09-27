@@ -6,12 +6,12 @@ interface ModalPropsInterface {
 	onClick?: () => void;
 	children: React.ReactNode;
 	open: boolean;
-	header?: any;
+	header?: string;
 	className?: string
 }
 
 const Modal: FunctionComponent<ModalPropsInterface> = ({ children, onClick = () => { }, open, header, className }) => {
-	const modalRef = useRef<any>();
+	const modalRef = useRef<HTMLDivElement>(null);
 
 	useOnClickOutside(modalRef, () => {
 		onClick();

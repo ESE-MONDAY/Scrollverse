@@ -130,7 +130,7 @@ export default function Home() {
      <header className="h-auto px-8 sm:px-16 py-4 sm:py-8 flex flex-col items-center justify-center gap-4 ">
         <h1 className="sm:text-2xl lg:text-5xl font-bold">Discover. Support. Engage.</h1>
         <p className="sm:text-base lg:text-2xl text-center text-scroll-black max-w-[900px]">Join our revolutionary platform where creators can showcase their projects, gather community feedback, and raise funds through donations.</p>
-        <Link href="/" className="bg-scroll-orange text-white px-4 py-2 text-xs sm:text-sm hover:shadow-md hover:shadow-scroll-foreground rounded-md">Explore Ecosystem</Link>
+        <Link href="/ecosystem" className="bg-scroll-orange text-white px-4 py-2 text-xs sm:text-sm hover:shadow-md hover:shadow-scroll-foreground rounded-md">Explore Ecosystem</Link>
       </header>
      <div className="sm:h-auto w-full bg-scroll-black p-4 lg:p-16 flex flex-col  ">
       <div className="text-white mt-16 grid grid-cols-2 justify-between">
@@ -139,7 +139,7 @@ export default function Home() {
             <p className="text-sm"> Our platform offers the tools you need to bring your projects to life and engage with a supportive community. :</p>
         </div>
         <div className="flex justify-end items-end">
-          <Link href="/" className="bg-scroll-orange  px-4 py-2 text-xs sm:text-sm hover:shadow-md hover:shadow-scroll-foreground rounded-md">Explore Ecosystem</Link>
+          <Link href="/ecosystem"  className="bg-scroll-orange  px-4 py-2 text-xs sm:text-sm hover:shadow-md hover:shadow-scroll-foreground rounded-md">Explore Ecosystem</Link>
         </div>
    
       </div>
