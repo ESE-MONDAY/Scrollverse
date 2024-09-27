@@ -31,14 +31,14 @@ const Modal: FunctionComponent<ModalPropsInterface> = ({ children, onClick = () 
 						>
 							<div className="modal-head flex border-b justify-between items-center px-3 py-3 ">
 								<h3 className="text-xl text-[#111111] font-semibold">{header}</h3>
-								<a
+								{/* <a
 									onClick={onClick}
 									href="#"
 									role="button"
 									className="focus:outline-none ml-auto focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
 								>
 									<img src="/icons/close-circle.svg"/>
-								</a>
+								</a> */}
 							</div>
 							<div className="modal-body py-5">{children}</div>
 						</div>
