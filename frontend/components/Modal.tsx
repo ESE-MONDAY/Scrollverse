@@ -20,7 +20,7 @@ const Modal: FunctionComponent<ModalPropsInterface> = ({ children, onClick = () 
 	return (
 		<>
 			{open && (
-				<div className="modal-background fixed top-0 left-0 right-0 bottom-0 bg-gray-900 bg-opacity-70 z-[90]">
+				<div className="modal-background fixed top-0 left-0 right-0 bottom-0 bg-scroll-black bg-opacity-70 z-[90]">
 					<div className="flex items-end md:items-center justify-around min-w-44 h-screen">
 						<div
 							ref={modalRef}

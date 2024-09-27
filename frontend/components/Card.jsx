@@ -3,7 +3,7 @@ import React from 'react'
 import { FaCaretUp, FaExternalLinkAlt } from "react-icons/fa";
 import { IoChatbubbleEllipses } from "react-icons/io5";
 
-const Card = ({props}) => {
+const Card = ({props, openModal}) => {
   return (
     <div className='flex justify-between items-center'>
         <div className='flex-col flex sm:flex-row gap-4'>
@@ -15,7 +15,7 @@ const Card = ({props}) => {
                 <Link href={props.link} target='_blank' className='text-xs text-scroll-black px-1 inline-flex'><FaExternalLinkAlt /></Link>
                 </p>
                 <div className='flex gap-2'>
-                    <p className='flex gap-1 items-center  text-xs hover:text-scroll-orange'><IoChatbubbleEllipses/> {props.commentCount}</p>  •
+                    <button onClick={openModal} className='flex gap-1 items-center  text-xs hover:text-scroll-orange'><IoChatbubbleEllipses/> {props.commentCount}</button>  •
                     <p className='flex gap-1 items-center  text-xs'> {props.categories.map((category) => (
                         <span className='text-xs text-scroll-black/80' key={category}>{category} |
                         </span>

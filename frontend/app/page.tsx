@@ -1,7 +1,10 @@
+'use client';
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import Card from "@/components/Card";
+import Modal from "@/components/Modal";
 
 
 const projects = [
@@ -109,6 +112,15 @@ const projects = [
 
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div className="bg-scroll-background flex flex-col justify-items-center min-h-screen  font-[family-name:var(--font-geist-sans)]">
       
@@ -158,13 +170,18 @@ export default function Home() {
         <div className="flex flex-col gap-4">
           {projects.map((project) => (
             <div key={project.id} className="hover:bg-scroll-orange/10">
-              <Card props={project}/>
+              <Card props={project} openModal={handleOpenModal}/>
             </div>
           ))}
         </div>
      </div>
      <Footer/>  
      </main>
+    
+
+      <Modal open={isModalOpen} onClick={handleCloseModal} header="Project Details">
+        <p>This is the content of the modal. You can display any information here.</p>
+      </Modal>
      
     </div>
   );
