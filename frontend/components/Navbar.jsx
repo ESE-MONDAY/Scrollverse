@@ -5,13 +5,11 @@ import Link from 'next/link';
 import { Web3Context } from './context/WalletProvider';
 
 const Navbar= () => {
-  const { account, connectWallet, signMessage } = useContext(Web3Context);
+  const { account, connectWallet } = useContext(Web3Context);
 
   const handleConnectAndSign = async () => {
     await connectWallet();
-    const message = "Welcome to ScrollVerse!";
-    const signature = await signMessage(message);
-    console.log("Signature:", signature);
+   
   };
 
   return (

@@ -58,6 +58,9 @@ export const Web3Provider = ({ children }) => {
         const accounts = await web3Instance.eth.getAccounts();
         const shortenedWalletAddress = formatWalletAddress(accounts[0]);
         setAccount(shortenedWalletAddress);
+        const message = 'Welcome to Scroll Sepolia!';
+      const signature = await signMessage(message);
+      console.log('Signed Message:', signature);
       } catch (error) {
         console.error('Failed to connect to Ethereum:', error);
       }
