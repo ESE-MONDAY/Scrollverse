@@ -24,7 +24,7 @@ export const Web3Provider = ({ children }) => {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
 
         const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-        if (chainId !== scrollSepoliaChainId) {
+        if (chainId !== '5') {
           try {
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
@@ -37,13 +37,13 @@ export const Web3Provider = ({ children }) => {
                 params: [{
                   chainId: scrollSepoliaChainId,
                   chainName: 'Scroll Sepolia',
-                  rpcUrls: ['https://rpc.scroll.io/sepolia'],
+                  rpcUrls: ['https://sepolia-rpc.scroll.io/'],
                   nativeCurrency: {
                     name: 'Scroll ETH',
                     symbol: 'ETH',
                     decimals: 18,
                   },
-                  blockExplorerUrls: ['https://sepolia.scroll.io'],
+                  blockExplorerUrls: ['https://sepolia.scrollscan.com'],
                 }],
               });
             }
