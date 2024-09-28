@@ -23,8 +23,7 @@ export const Web3Provider = ({ children }) => {
       try {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
   
-        const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-        if (chainId !== 0x5) { // Using string for comparison
+        if (!await isCorrectNetwork()) {
           try {
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
@@ -32,12 +31,13 @@ export const Web3Provider = ({ children }) => {
             });
           } catch (error) {
             if (error.code === 4902) {
+              // Add the network if it doesn't exist
               await window.ethereum.request({
                 method: 'wallet_addEthereumChain',
                 params: [{
-                  chainId: 0x5,
+                  chainId: '0x5',
                   chainName: 'Scroll Sepolia',
-                  rpcUrls: ['https://sepolia-rpc.scroll.io/'], // Updated RPC URL
+                  rpcUrls: ['https://rpc.scroll.io/sepolia'],
                   nativeCurrency: {
                     name: 'Scroll ETH',
                     symbol: 'ETH',
@@ -58,9 +58,8 @@ export const Web3Provider = ({ children }) => {
         const accounts = await web3Instance.eth.getAccounts();
         const shortenedWalletAddress = formatWalletAddress(accounts[0]);
         setAccount(shortenedWalletAddress);
-        const message = 'Welcome to Scroll Sepolia!';
-      const signature = await signMessage(message);
-      console.log('Signed Message:', signature);
+  
+        // Optionally sign a message here
       } catch (error) {
         console.error('Failed to connect to Ethereum:', error);
       }
@@ -68,6 +67,7 @@ export const Web3Provider = ({ children }) => {
       console.log('MetaMask is not installed');
     }
   };
+  
   
 
   const signMessage = async (message) => {
