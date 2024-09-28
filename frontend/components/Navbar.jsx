@@ -30,7 +30,7 @@ const Navbar= () => {
           </button>
         ) : (
           <span className='text-sm text-black'>
-            Connected: {account.slice(0, 6)}...{account.slice(-4)} {/* Displaying a shortened version of the address */}
+            {account.slice(0, 6)}...{account.slice(-4)} {/* Displaying a shortened version of the address */}
           </span>
         )}
       </div>
