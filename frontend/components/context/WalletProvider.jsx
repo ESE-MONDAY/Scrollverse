@@ -27,7 +27,7 @@ export const Web3Provider = ({ children }) => {
           try {
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
-              params: [{ chainId: '0x5' }],
+              params: [{ chainId: '0x82753' }],
             });
           } catch (error) {
             if (error.code === 4902) {
@@ -35,7 +35,7 @@ export const Web3Provider = ({ children }) => {
               await window.ethereum.request({
                 method: 'wallet_addEthereumChain',
                 params: [{
-                  chainId: '0x5',
+                  chainId:  '0x82753',
                   chainName: 'Scroll Sepolia',
                   rpcUrls: ['https://rpc.scroll.io/sepolia'],
                   nativeCurrency: {
@@ -50,8 +50,6 @@ export const Web3Provider = ({ children }) => {
               console.error('Error switching chains:', error);
             }
           }
-        } else {
-          console.log('Already connected to Scroll Sepolia');
         }
   
         const web3Instance = new Web3(window.ethereum);
@@ -69,7 +67,6 @@ export const Web3Provider = ({ children }) => {
       console.log('MetaMask is not installed');
     }
   };
-  
   
   
 
