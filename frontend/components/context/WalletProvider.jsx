@@ -8,6 +8,10 @@ export const Web3Provider = ({ children }) => {
   const [web3, setWeb3] = useState(null);
   const [account, setAccount] = useState(null);
 
+  const SCROLL_SEPOLIA_CHAIN_ID = '0x82751'; // 534351 in decimal
+  const SCROLL_SEPOLIA_RPC_URL = 'https://sepolia-rpc.scroll.io';
+  const SCROLL_SEPOLIA_BLOCK_EXPLORER = 'https://sepolia.scrollscan.com';
+
   const formatWalletAddress = useCallback((address) => {
     if (!address) return "No address provided";
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
@@ -16,7 +20,7 @@ export const Web3Provider = ({ children }) => {
   const isCorrectNetwork = useCallback(async () => {
     if (!web3) return false;
     const chainId = await web3.eth.getChainId();
-    return chainId === 534351; // Decimal representation of 0x82753
+    return chainId === parseInt(SCROLL_SEPOLIA_CHAIN_ID, 16);
   }, [web3]);
 
   const connectWallet = useCallback(async () => {
@@ -30,22 +34,22 @@ export const Web3Provider = ({ children }) => {
           try {
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
-              params: [{ chainId: '0x82753' }],
+              params: [{ chainId: SCROLL_SEPOLIA_CHAIN_ID }],
             });
           } catch (error) {
             if (error.code === 4902) {
               await window.ethereum.request({
                 method: 'wallet_addEthereumChain',
                 params: [{
-                  chainId: '0x82753',
+                  chainId: SCROLL_SEPOLIA_CHAIN_ID,
                   chainName: 'Scroll Sepolia',
-                  rpcUrls: ['https://sepolia-rpc.scroll.io'],
+                  rpcUrls: [SCROLL_SEPOLIA_RPC_URL],
                   nativeCurrency: {
-                    name: 'Scroll ETH',
+                    name: 'Ether',
                     symbol: 'ETH',
                     decimals: 18,
                   },
-                  blockExplorerUrls: ['https://sepolia-blockscout.scroll.io'],
+                  blockExplorerUrls: [SCROLL_SEPOLIA_BLOCK_EXPLORER],
                 }],
               });
             } else {
