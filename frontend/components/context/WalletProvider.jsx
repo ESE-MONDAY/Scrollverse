@@ -28,16 +28,16 @@ export const Web3Provider = ({ children }) => {
           try {
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
-              params: [{ chainId: '0x5' }],
+              params: [{ chainId: '5' }],
             });
           } catch (error) {
             if (error.code === 4902) {
               await window.ethereum.request({
                 method: 'wallet_addEthereumChain',
                 params: [{
-                  chainId: '0x5',
+                  chainId: '5',
                   chainName: 'Scroll Sepolia',
-                  rpcUrls: ['https://rpc.scroll.io/sepolia'], // Updated RPC URL
+                  rpcUrls: ['https://sepolia-rpc.scroll.io/'], // Updated RPC URL
                   nativeCurrency: {
                     name: 'Scroll ETH',
                     symbol: 'ETH',
