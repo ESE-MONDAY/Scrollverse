@@ -35,7 +35,7 @@ export const Web3Provider = ({ children }) => {
               await window.ethereum.request({
                 method: 'wallet_addEthereumChain',
                 params: [{
-                  chainId: scrollSepoliaChainId,
+                  chainId: 5,
                   chainName: 'Scroll Sepolia',
                   rpcUrls: ['https://sepolia-rpc.scroll.io/'],
                   nativeCurrency: {
