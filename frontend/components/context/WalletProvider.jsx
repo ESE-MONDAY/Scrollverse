@@ -50,6 +50,8 @@ export const Web3Provider = ({ children }) => {
               console.error('Error switching chains:', error);
             }
           }
+        } else {
+          console.log('Already connected to Scroll Sepolia');
         }
   
         const web3Instance = new Web3(window.ethereum);
@@ -67,6 +69,7 @@ export const Web3Provider = ({ children }) => {
       console.log('MetaMask is not installed');
     }
   };
+  
   
   
 
