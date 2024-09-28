@@ -7,7 +7,7 @@ export const Web3Context = createContext();
 export const Web3Provider = ({ children }) => {
   const [web3, setWeb3] = useState(null);
   const [account, setAccount] = useState(null);
-  const scrollSepoliaChainId = '0x5'; // Hexadecimal Chain ID for Scroll Sepolia
+
 
   function formatWalletAddress(address) {
     if (!address) {
@@ -22,37 +22,39 @@ export const Web3Provider = ({ children }) => {
     if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
       try {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
-
+  
         const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-        if (chainId !== '5') {
+        if (chainId !== '5') { // Using string for comparison
           try {
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
-              params: [{ chainId: scrollSepoliaChainId }],
+              params: [{ chainId: '0x5' }],
             });
           } catch (error) {
             if (error.code === 4902) {
               await window.ethereum.request({
                 method: 'wallet_addEthereumChain',
                 params: [{
-                  chainId: 5,
+                  chainId: '0x5',
                   chainName: 'Scroll Sepolia',
-                  rpcUrls: ['https://sepolia-rpc.scroll.io/'],
+                  rpcUrls: ['https://rpc.scroll.io/sepolia'], // Updated RPC URL
                   nativeCurrency: {
                     name: 'Scroll ETH',
                     symbol: 'ETH',
                     decimals: 18,
                   },
-                  blockExplorerUrls: ['https://sepolia.scrollscan.com'],
+                  blockExplorerUrls: ['https://sepolia.scroll.io'],
                 }],
               });
+            } else {
+              console.error('Error switching chains:', error);
             }
           }
         }
-
+  
         const web3Instance = new Web3(window.ethereum);
         setWeb3(web3Instance);
-
+  
         const accounts = await web3Instance.eth.getAccounts();
         const shortenedWalletAddress = formatWalletAddress(accounts[0]);
         setAccount(shortenedWalletAddress);
@@ -63,6 +65,7 @@ export const Web3Provider = ({ children }) => {
       console.log('MetaMask is not installed');
     }
   };
+  
 
   const signMessage = async (message) => {
     if (!account) {
