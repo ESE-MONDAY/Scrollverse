@@ -1,5 +1,5 @@
 'use client'
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useCallback } from 'react';
 import Web3 from 'web3';
 
 export const Web3Context = createContext();
@@ -8,21 +8,24 @@ export const Web3Provider = ({ children }) => {
   const [web3, setWeb3] = useState(null);
   const [account, setAccount] = useState(null);
 
+  const formatWalletAddress = useCallback((address) => {
+    if (!address) return "No address provided";
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  }, []);
 
-  function formatWalletAddress(address) {
-    if (!address) {
-      return "No address provided";
-    }
-    const firstPart = address.slice(0, 6);
-    const lastPart = address.slice(-4);
-    return `${firstPart}...${lastPart}`;
-  }
+  const isCorrectNetwork = useCallback(async () => {
+    if (!web3) return false;
+    const chainId = await web3.eth.getChainId();
+    return chainId === 534351; // Decimal representation of 0x82753
+  }, [web3]);
 
-  const connectWallet = async () => {
+  const connectWallet = useCallback(async () => {
     if (typeof window !== 'undefined' && typeof window.ethereum !== 'undefined') {
       try {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
-  
+        const web3Instance = new Web3(window.ethereum);
+        setWeb3(web3Instance);
+
         if (!await isCorrectNetwork()) {
           try {
             await window.ethereum.request({
@@ -31,62 +34,56 @@ export const Web3Provider = ({ children }) => {
             });
           } catch (error) {
             if (error.code === 4902) {
-              // Add the network if it doesn't exist
               await window.ethereum.request({
                 method: 'wallet_addEthereumChain',
                 params: [{
-                  chainId:  '0x82753',
+                  chainId: '0x82753',
                   chainName: 'Scroll Sepolia',
-                  rpcUrls: ['https://rpc.scroll.io/sepolia'],
+                  rpcUrls: ['https://sepolia-rpc.scroll.io'],
                   nativeCurrency: {
                     name: 'Scroll ETH',
                     symbol: 'ETH',
                     decimals: 18,
                   },
-                  blockExplorerUrls: ['https://sepolia.scroll.io'],
+                  blockExplorerUrls: ['https://sepolia-blockscout.scroll.io'],
                 }],
               });
             } else {
               console.error('Error switching chains:', error);
+              return;
             }
           }
         }
-  
-        const web3Instance = new Web3(window.ethereum);
-        setWeb3(web3Instance);
-  
+
         const accounts = await web3Instance.eth.getAccounts();
         const shortenedWalletAddress = formatWalletAddress(accounts[0]);
         setAccount(shortenedWalletAddress);
-  
-        // Optionally sign a message here
       } catch (error) {
         console.error('Failed to connect to Ethereum:', error);
       }
     } else {
       console.log('MetaMask is not installed');
     }
-  };
-  
-  
+  }, [formatWalletAddress, isCorrectNetwork]);
 
-  const signMessage = async (message) => {
-    if (!account) {
+  const signMessage = useCallback(async (message) => {
+    if (!web3 || !account) {
       throw new Error("No account connected");
     }
     try {
-      const web3Instance = new Web3(window.ethereum);
-      const signature = await web3Instance.eth.personal.sign(message, account);
+      const fullAccount = await web3.eth.getAccounts().then(accounts => accounts[0]);
+      const signature = await web3.eth.personal.sign(message, fullAccount, '');
       return signature;
     } catch (error) {
       console.error('Failed to sign message:', error);
+      throw error;
     }
-  };
-  
-  const disconnectWallet = () => {
+  }, [web3, account]);
+
+  const disconnectWallet = useCallback(() => {
     setWeb3(null);
     setAccount(null);
-  };
+  }, []);
 
   return (
     <Web3Context.Provider value={{ web3, account, connectWallet, signMessage, disconnectWallet }}>
