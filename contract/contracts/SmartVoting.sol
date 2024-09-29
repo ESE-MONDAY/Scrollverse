@@ -91,4 +91,26 @@ contract ProjectVoting {
         Project memory project = projects[_projectId];
         return (project.name, project.description, project.website, project.upvotes, project.downvotes, project.totalDonations, project.creator);
     }
+    // Get a list of all project IDs
+function getAllProjects() public view returns (uint256[] memory) {
+    uint256[] memory projectIds = new uint256[](projectCount);
+    for (uint256 i = 1; i <= projectCount; i++) {
+        if (projects[i].exists) {
+            projectIds[i - 1] = i;
+        }
+    }
+    return projectIds;
+}
+
+// Get details of all projects by their IDs
+function getProjectsDetails() public view returns (Project[] memory) {
+    Project[] memory allProjects = new Project[](projectCount);
+    for (uint256 i = 1; i <= projectCount; i++) {
+        if (projects[i].exists) {
+            allProjects[i - 1] = projects[i];
+        }
+    }
+    return allProjects;
+}
+
 }

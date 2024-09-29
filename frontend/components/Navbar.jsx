@@ -4,20 +4,27 @@ import { useContext } from 'react';
 import Link from 'next/link';
 import { Web3Context } from './context/WalletProvider';
 
+
 const Navbar= () => {
   const { account, connectWallet } = useContext(Web3Context);
 
   const handleConnectAndSign = async () => {
-    await connectWallet();
-   
+    try {
+      // Connect the wallet
+      await connectWallet();
+  } catch (error) {
+      console.error("Error connecting or signing:", error);
+  }
+
+    
   };
 
   return (
-    <nav className='flex justify-between items-center w-full p-4'>
+    <nav className='flex justify-between items-center w-full p-4 sm:p-8'>
       <div className='flex gap-4 sm:gap-16'>
         <Link href="/" className='text-base'>ScrollVerse <sub>made with 💖</sub></Link>
         <div className='hidden sm:flex gap-4'>
-          <Link href="/" className='text-sm text-black hover:text-scroll-orange'>Ecosystem</Link>
+          <Link href="/ecosystem" className='text-sm text-black hover:text-scroll-orange'>Ecosystem</Link>
           <Link href="/" className='text-sm text-black hover:text-scroll-orange'>Bridge</Link>
         </div>
       </div>

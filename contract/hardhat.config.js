@@ -9,7 +9,7 @@ module.exports = {
   networks: {
     sepolia: {
       url: RPC_URL,
-      accounts: [`0x${PRIVATE_KEY}`]
+      accounts: [`${PRIVATE_KEY}`]
     }
   }
 };

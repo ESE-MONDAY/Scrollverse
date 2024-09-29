@@ -78,11 +78,11 @@ const Card = ({props}) => {
             <p className='text-scroll-black font-semibold text-xs'>{props.upvoteCount}</p>
         </div>
         <div className='w-full border-r-[1px] flex flex-col items-center justify-center'>
-            <p className='text-scroll-black font-medium text-sm'>Upvotes</p>
+            <p className='text-scroll-black font-medium text-sm'>Downvote</p>
             <p className='text-scroll-black font-semibold text-xs'>{props.downvoteCount}</p>
         </div>
         <div className='w-full flex flex-col items-center justify-center'>
-            <p className='text-scroll-black font-medium text-sm'>Upvotes</p>
+            <p className='text-scroll-black font-medium text-sm'>Comments</p>
             <p className='text-scroll-black font-semibold text-xs'>{props.commentCount}</p>
         </div>
        </div>
