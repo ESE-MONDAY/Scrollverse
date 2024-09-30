@@ -99,7 +99,6 @@ const connectWallet = async () => {
   };
   
   const disconnectWallet = () => {
-    setWeb3(null);
     setAccount(null);
   };
 
@@ -116,19 +115,23 @@ const connectWallet = async () => {
 
   const vote = async (projectId, isUpvote) => {
     if (projectVoting) {
-      try {
-        await projectVoting.vote(projectId, isUpvote);
-        console.log(`Successfully ${isUpvote ? 'upvoted' : 'downvoted'} project!`);
-      } catch (error) {
-        console.error('Error voting:', error);
-      }
+        try {
+            await projectVoting.vote(projectId, isUpvote, account);
+            console.log(`Successfully ${isUpvote ? 'upvoted' : 'downvoted'} project!`);
+            return { success: true }; // Indicate success
+        } catch (error) {
+            console.error('Error voting:', error);
+            return { success: false, error }; // Indicate failure with error
+        }
     }
-  };
+    return { success: false, error: 'Voting not initialized' }; // Handle uninitialized state
+};
+
 
   const donate = async (projectId, amount) => {
     if (projectVoting) {
       try {
-        await projectVoting.donate(projectId, amount);
+        await projectVoting.donate(projectId, amount, account);
         console.log('Donation successful!');
       } catch (error) {
         console.error('Error donating:', error);

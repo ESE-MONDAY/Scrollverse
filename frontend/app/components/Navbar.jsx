@@ -6,7 +6,7 @@ import { Web3Context } from './context/WalletProvider';
 
 
 const Navbar= () => {
-  const { account, connectWallet } = useContext(Web3Context);
+  const { account, connectWallet,disconnectWallet } = useContext(Web3Context);
 
   const handleConnectAndSign = async () => {
     try {
@@ -34,9 +34,9 @@ const Navbar= () => {
             Connect Wallet
           </button>
         ) : (
-          <span className='text-sm text-black bg-scroll-foreground px-4 py-2 '>
+          <button onClick={disconnectWallet} className='text-sm text-black bg-scroll-foreground px-4 py-2 '>
             {account.slice(0, 6)}...{account.slice(-4)} {/* Displaying a shortened version of the address */}
-          </span>
+          </button>
         )}
       </div>
     </nav>
