@@ -49,7 +49,7 @@ const ProjectList = () => {
       {project.length === 0 ? <p>No projects found</p>:
       project.map((project: Project) => (
         <div key={project.id} className="hover:bg-scroll-orange/10">
-      <Card props={{ project, fetchProjects, vote }} />
+      <Card props={{ project, fetchProjects, vote,account }} />
       </div>
         
       ))}

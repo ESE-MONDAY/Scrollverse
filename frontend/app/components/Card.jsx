@@ -4,10 +4,11 @@ import React, {useState} from 'react'
 import { FaCaretUp, FaExternalLinkAlt } from "react-icons/fa";
 import { IoChatbubbleEllipses } from "react-icons/io5";
 import Modal from "../components/Modal";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 
 const Card = ({props}) => {
-    const { project, fetchProjects, vote } = props;
+    const { project, fetchProjects, vote,account } = props;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
 
@@ -81,13 +82,16 @@ const Card = ({props}) => {
             <div className='flex justify-between sm:items-center gap-1 flex-col sm:flex-row'>
                 <p>{project.shortDescription} <Link href={project.website} target='_blank' className='text-xs text-scroll-black px-1 inline-flex hover:text-scroll-orange'><FaExternalLinkAlt /></Link></p>
                 <div className='flex w-full sm:w-[250px]  justify-end gap-2 items-center'>
-                    
-                    <button onClick={handleUpvote} className='border-[1px] border-scroll-black rounded-sm flex  items-center gap-1  p-1 hover:bg-scroll-black hover:text-white'>
+                    <div className='flex flex-col'>
+                    {!account && <small className='text-xs text-scroll-black/80 m-1'>Connect your wallet to upvote</small>}
+                    <button disabled={!account} onClick={handleUpvote} className='border-[1px]  border-scroll-black hover:bg-scroll-black  hover:text-white disabled:bg-scroll-black/10  disabled:hover:text-scroll-black disabled:cursor-not-allowed flex justify-center items-center gap-2 text-scroll-black text-sm p-2 rounded-md'>
                         <FaCaretUp className='text-2xl' />
                         <p>Upvote</p>
                         <p className='text-sm font-medium'>{project.upvotes}</p>
 
                         </button>
+                    </div>
+                    
 
                 </div>
             </div>
@@ -125,8 +129,15 @@ const Card = ({props}) => {
       
       </Modal>
       <Modal open={isDonationModalOpen} onClick={handleCloseDonationModal} header={props.title} className='p-4 flex flex-col gap-1 '>
-        <div className='max-w-[400px] mx-auto'>
-        Donate to {props.name}
+        <div className='max-w-[400px] mx-auto  rounded w-full p-2 rounded border-[1px] border-scroll-foreground'>
+            <div className='flex justify-between'>
+            <h3 className='font-semibold text-sm'>Donate to {project.name}</h3>
+        
+        <button onClick={handleCloseDonationModal}>
+        <IoMdCloseCircleOutline />
+        </button>
+            </div>
+          
         </div>
       </Modal>
     </div>

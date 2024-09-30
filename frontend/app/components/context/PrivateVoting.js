@@ -203,7 +203,7 @@ const PROJECT_VOTING_ABI =   [
     "type": "function"
   }
 ]
-const PROJECT_VOTING_ADDRESS = '0x6BAe00e10528d5D73B4FeE18655a9bE7A6427d83'; 
+const PROJECT_VOTING_ADDRESS = '0xFb9Ef5056373042069F42393435ebf232afabCa8'; 
 
 class ProjectVoting {
   constructor(web3) {
