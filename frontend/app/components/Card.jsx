@@ -76,7 +76,7 @@ const Card = ({props}) => {
 
         </div>
         <Modal open={isModalOpen} onClick={handleCloseModal} header={project.name} className='p-4 flex flex-col gap-1'>
-        <div className='border-[1px] border-scroll-black rounded-sm flex flex-col items-center h-10 w-10 p-1 bg-scroll-black text-white'>PI</div>
+        <div className='border-[1px] bg-sc border-scroll-black rounded-sm flex flex-col items-center h-10 w-10 p-1 bg-scroll-black text-white'>PI</div>
         <div className=''>
             <h3 className='font-semibold text-xl sm:text-3xl'>{project.name}</h3>
             <div className='flex justify-between sm:items-center gap-1 flex-col sm:flex-row'>
@@ -129,7 +129,7 @@ const Card = ({props}) => {
       
       </Modal>
       <Modal open={isDonationModalOpen} onClick={handleCloseDonationModal} header={props.title} className='p-4 flex flex-col gap-1 '>
-        <div className='max-w-[400px] mx-auto  rounded w-full p-2 rounded border-[1px] border-scroll-foreground'>
+        <div className='max-w-[400px] mx-auto  rounded w-full p-2 border-[1px] border-scroll-foreground'>
             <div className='flex justify-between'>
             <h3 className='font-semibold text-sm'>Donate to {project.name}</h3>
         
