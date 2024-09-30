@@ -162,7 +162,7 @@ export default function Home() {
      </div>
    <ProjectList/>
     
-   <section className="px-8 py-16 bg-scroll-black text-white text-center">
+   <section className="px-8 py-16 bg-black text-white text-center">
     <h2 className="text-3xl font-bold">Ready to Get Started?</h2>
     <p className="mt-4">Explore the ecosystem and add your product!</p>
     <Link href="/ecosystem" className="mt-4 inline-block bg-scroll-orange  px-4 py-2 text-xs sm:text-sm hover:shadow-md hover:shadow-scroll-foreground/30 rounded-md">
