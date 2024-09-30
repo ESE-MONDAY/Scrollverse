@@ -1,7 +1,7 @@
 import Web3 from 'web3';
 
 
-const PROJECT_VOTING_ABI =   [
+const PROJECT_VOTING_ABI =    [
   {
     "anonymous": false,
     "inputs": [
@@ -203,7 +203,7 @@ const PROJECT_VOTING_ABI =   [
     "type": "function"
   }
 ]
-const PROJECT_VOTING_ADDRESS = '0xFb9Ef5056373042069F42393435ebf232afabCa8'; 
+const PROJECT_VOTING_ADDRESS = '0xCbF3F827BE20628d9A098802E41f41aFEE9adF36'; 
 
 class ProjectVoting {
   constructor(web3) {

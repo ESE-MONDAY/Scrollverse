@@ -42,7 +42,7 @@ const ProjectList = () => {
     <div className="p-4 lg:p-8 flex flex-col gap-4 ">
       <div className='flex justify-between p-1 border-b-[1px] border-b-scroll-black'>
       <h3  className="font-medium text-xl ">Top Launch 🔥</h3>
-      <button disabled={account == null} onClick={handleOpenModal}   className= " border-[1px]  border-scroll-black hover:bg-scroll-black hover:text-white disabled:bg-scroll-black/10  disabled:hover:text-scroll-black disabled:cursor-not-allowed flex items-center gap-1 text-scroll-black text-sm p-2 rounded-md"><FaPlus /> Add Project</button>
+      <button disabled={account == null} onClick={handleOpenModal}   className= " border-[1px]  border-scroll-black hover:bg-scroll-black  hover:text-white disabled:bg-scroll-black/10  disabled:hover:text-scroll-black disabled:cursor-not-allowed flex items-center gap-1 text-scroll-black text-sm p-2 rounded-md"><FaPlus /> Add Project</button>
       </div>
     
     <div className="flex flex-col gap-4">
