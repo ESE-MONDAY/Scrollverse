@@ -1,11 +1,10 @@
 'use client';
-import Navbar from "@/components/Navbar";
+import Navbar from "./components/Navbar";
 import Link from "next/link";
-import Footer from "@/components/Footer";
+import Footer from "./components/Footer";
 
-
-import Marquee from "@/components/ui/marquee";
-import ProjectList from "@/components/ProjectList";
+import Marquee from "./components/ui/marquee";
+import ProjectList from "./components/ProjectList";
 
 
 
